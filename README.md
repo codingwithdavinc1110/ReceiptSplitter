@@ -1,7 +1,44 @@
 
-# Struttura generale del progetto. 
+# Struttura generale del progetto. - dettata da DeepSeek da migliorare e personalizzare su necessità
 
-# perse-recepeit - Per il momento Brandon
+---
+
+## 🤔 Come pensare a questa struttura (logica di separazione)
+
+Abbiamo diviso il progetto in **3 macro-aree**, che corrispondono ai 3 ruoli del team:
+
+1.  **`/backend`** (Backend + AI)
+    - Contiene tutta la "logica nascosta": l'OCR per leggere gli scontrini, l'integrazione con OpenAI, i calcoli di quanto deve pagare ciascuno.
+    - Espone le **API** (endpoints) che il frontend chiamerà per ottenere i dati.
+    - È completamente indipendente dal frontend; può essere testato e sviluppato separatamente con strumenti come Postman o Swagger (FastAPI lo genera automaticamente).
+
+2.  **`/frontend`** (Frontend + UX)
+    - Contiene tutto ciò che l'utente vede e tocca: schermate di login, fotocamera per scansione, dashboard con i debiti.
+    - Comunica **solo** con il backend tramite chiamate HTTP (fetch/axios).
+    - È pensato per essere **mobile-friendly** (responsive) e veloce.
+
+3.  **`/infra`** (DB + Auth + Deploy)
+    - Gestisce l'ambiente di esecuzione: database (Postgres), cache (Redis) e il modo in cui tutto viene messo online.
+    - Definendo un `docker-compose.yml`, ogni sviluppatore può avviare l'intero progetto sul proprio PC con un solo comando (`docker-compose up`), senza dover installare Postgres manualmente.
+
+---
+
+## ⚡ Flusso dei dati "visivo"
+
+Per capire come i file dialogano tra loro, segui questo flusso quando l'utente scatta una foto:
+
+1. **Frontend** (`scan/page.tsx`) → invia l'immagine al backend tramite API (`POST /api/receipts/parse`).
+2. **Backend** (`api/routes/receipts.py`) → riceve la richiesta e chiama il `services/ocr_service.py`.
+3. **Servizio** (`ocr_service.py`) → usa OpenAI/Tesseract per estrarre il testo, poi `parser_service.py` trasforma il testo in una lista di prodotti.
+4. **Backend** salva i dati nel database (usando i `models/`) e restituisce il JSON al frontend.
+5. **Frontend** mostra la lista dei prodotti all'utente, che li assegna ai coinquilini usando il componente `SplitAssigner.tsx`.
+6. **Frontend** invia le assegnazioni al backend (`POST /api/splits/`), che calcola i debiti e li salva nel DB.
+7. **Frontend** aggiorna la **Dashboard** (`(dashboard)/page.tsx`) che mostra il nuovo riepilogo debiti.
+
+---
+
+
+# perse-recepeit - Per il momento Brandon 👺
 
 Io non mi preoccuperei a scrivere tutta la directory di github in inglese. Lo tradurrei alla fine, il codice meglio in inglese sicuramente. Il progetto ha un sacco di cose da fare. Quindi qui teniamo una traccia del da farsi.
 
