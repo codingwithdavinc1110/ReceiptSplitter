@@ -46,7 +46,14 @@ Io non mi preoccuperei a scrivere tutta la directory di github in inglese. Lo tr
 
 # - Per il momento Giulio
 
-# - Per il momento Bennet
+# - Codice apportato da Bennett
+
+## Come avviare l'infrastruttura
+
+- Creare una copia di .env.example e rinominarla come .env
+- Eseguire dalla root del progetto './docker-compose.yml s (s di 'start')'
+- Dopo aver verificato che tutto funzioni, eseguire './docker-compose.yml x (oppure stop)'
+    per concludere la sessione di utilizzo e cancellare i container
 
 # Cosa fa esattamente il progetto?
 
