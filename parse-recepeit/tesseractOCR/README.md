@@ -3,6 +3,9 @@
 
 pip install -r requirements.txt
 
+# Ricordare che
+
+Bisogna entrare nell'ambiente virtuale per poter runnare il codice.
 
 # Checklist 
 
