@@ -40,6 +40,11 @@ Per capire c'è da studiare bene le seguenti righe di codice:
     return opening
 ```
 
+### Cerchiamo di capire davvero
+
+Citerò un sito da dove sto studiando le informazioni necessarie: [Seven steps to image pre-processing]([text](https://nextgeninvent.com/blogs/7-steps-of-image-pre-processing-to-improve-ocr-using-python-2/)).
+
+
 # Appunti teorici
 
 Per migliorare l'accuratezza bisgona capire ancora meglio come funziona il pre-processing. Ogni passaggio, sia un po' dal punto di vista teorico che dal punto di vista pratico delle funzioni che vengono usate. 
