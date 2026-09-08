@@ -1,3 +1,4 @@
-## What do we need here?
-
-We need to use Tesseract to extract strings from image. 
+## Al momento in funziona. Esempio con lo scontrino fake
+![Immagine dello scontrino falso](/images/scontrinoFake.png)   
+Basti guardare il risultato
+[Risultato](reResult.txt)
